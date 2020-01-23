@@ -4,32 +4,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 
-
-    [Tooltip("in ms^-1")][SerializeField] float xSpeed = 4f;
+    [Header("Screen position")]
     [Tooltip("Range on X axis")] [SerializeField] float xRange = 5f;
     [Tooltip("Range on Y axis")] [SerializeField] float yRange = 3.5f;
 
+    [Header("Speed")]
+    [SerializeField] float xSpeed = 4f;
     [SerializeField] float posPitchFactor = -5f;
     [SerializeField] float posYawFactor = 5f;
     [SerializeField] float controlPitchFactor = -20f;
     [SerializeField] float controlRollFactor = -20f;
 
     float xThrow, yThrow;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    bool controlEnabled = true;
 
     // Update is called once per frame
     void Update()
     {
-        ProcessTranslation();
-        ProcessRotation();
+        if (controlEnabled)
+        {
+            ProcessTranslation();
+            ProcessRotation();
+        }
     }
 
     private void ProcessRotation()
@@ -39,6 +38,13 @@ public class Player : MonoBehaviour
         float roll = xThrow * controlRollFactor;
 
         transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+    }
+
+    //Call by string reference (collissionHandler.cs)
+    void OnPlayerDeath()
+    {
+        print("Controls Frozen"); 
+        controlEnabled = false;
     }
 
     private void ProcessTranslation()
