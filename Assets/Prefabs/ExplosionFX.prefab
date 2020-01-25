@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 6956072607891668575}
   - component: {fileID: 6956072607891668574}
   - component: {fileID: 6956072607891668569}
+  - component: {fileID: 7148666824255549192}
   m_Layer: 0
-  m_Name: Explosion
+  m_Name: ExplosionFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6956072607891668568}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -175.52051, y: 16.78, z: 56.72}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &6956072607891668575
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -227,25 +228,25 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.6320754, g: 0, b: 0.063909434, a: 1}
-        key1: {r: 1, g: 0.16600259, b: 0, a: 0.9098039}
-        key2: {r: 0.9586293, g: 0.52877074, b: 0.02553261, a: 0.32156864}
-        key3: {r: 1, g: 0.7170732, b: 0, a: 0}
-        key4: {r: 1, g: 0.95791, b: 0.3160377, a: 0}
+        key1: {r: 1, g: 0.16600259, b: 0, a: 0.5568628}
+        key2: {r: 0.9586293, g: 0.52877074, b: 0.02553261, a: 0.6}
+        key3: {r: 1, g: 0.7170732, b: 0, a: 0.5176471}
+        key4: {r: 0.5, g: 0.5, b: 0.5, a: 0}
         key5: {r: 1, g: 0, b: 0.9320464, a: 0}
         key6: {r: 0, g: 0.9888339, b: 1, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 578
         ctime1: 16769
         ctime2: 31997
-        ctime3: 49537
-        ctime4: 65535
+        ctime3: 45875
+        ctime4: 64571
         ctime5: 42212
         ctime6: 54163
         ctime7: 0
         atime0: 0
         atime1: 42020
         atime2: 65535
-        atime3: 0
+        atime3: 65535
         atime4: 0
         atime5: 0
         atime6: 0
@@ -285,8 +286,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.5
-      minScalar: 0.5
+      scalar: 5
+      minScalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -607,7 +608,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -866,7 +867,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 80
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -919,7 +920,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4765,8 +4766,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1920566cbd0d84b6c9f5c09e02931745, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.25
+  m_PlayOnAwake: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4850,3 +4851,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7148666824255549192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956072607891668568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43210ad1e517d4d50948398b48077b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeUntilDestroy: 5
