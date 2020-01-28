@@ -6,6 +6,9 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("General")]
+    [SerializeField] GameObject[] guns;
+
 
     [Header("Screen position")]
     [Tooltip("Range on X axis")] [SerializeField] float xRange = 5f;
@@ -28,24 +31,11 @@ public class PlayerController : MonoBehaviour
         {
             ProcessTranslation();
             ProcessRotation();
+            ProcessFiring();
         }
     }
+    
 
-    private void ProcessRotation()
-    {
-        float pitch = transform.localPosition.y * posPitchFactor + yThrow * controlPitchFactor;
-        float yaw = transform.localPosition.x * posYawFactor;
-        float roll = xThrow * controlRollFactor;
-
-        transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
-    }
-
-    //Call by string reference (collissionHandler.cs)
-    void OnPlayerDeath()
-    {
-        print("Controls Frozen"); 
-        controlEnabled = false;
-    }
 
     private void ProcessTranslation()
     {
@@ -64,4 +54,49 @@ public class PlayerController : MonoBehaviour
 
         transform.localPosition = new Vector3(xPos, yPos, transform.localPosition.z);
     }
+    private void ProcessRotation()
+    {
+        float pitch = transform.localPosition.y * posPitchFactor + yThrow * controlPitchFactor;
+        float yaw = transform.localPosition.x * posYawFactor;
+        float roll = xThrow * controlRollFactor;
+
+        transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+    }
+
+    private void ProcessFiring()
+    {
+        if (CrossPlatformInputManager.GetButton("Jump"))
+        {
+            ActivateGuns();
+        }
+        else
+        {
+            DeactivateGuns();
+        }
+    }
+
+    private void ActivateGuns()
+    {
+        foreach (GameObject gun in guns)
+        {
+            gun.SetActive(true);
+        }
+    }
+
+    private void DeactivateGuns()
+    {
+        foreach (GameObject gun in guns)
+        {
+            gun.SetActive(false);
+        }
+    }
+
+
+    //Call by string reference (collissionHandler.cs)
+    void OnPlayerDeath()
+    {
+        print("Controls Frozen"); 
+        controlEnabled = false;
+    }
+
 }
